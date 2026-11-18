@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>선형·로그 증폭기를 결합한 광대역 동적 범위 펄스 ToF 라이다 수신 회로</title>
+<meta name="description" content="IEEE Transactions on Instrumentation and Measurement 2026 논문 소개 페이지 — 82 dB 동적 범위에서 46 ps 타임워크를 달성한 펄스 ToF 라이다 수신 회로">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --ink:#16181d; --muted:#5b6170; --line:#e3e5ea; --bg:#fbfbfc; --card:#ffffff;
+    --accent:#1f5eff; --accent-soft:#eaf0ff; --warm:#e8552b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+       color:var(--ink);background:var(--bg);line-height:1.75;font-size:17px;word-break:keep-all}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* hero */
+  header.hero{padding:88px 0 56px;border-bottom:1px solid var(--line);background:
+     radial-gradient(1200px 400px at 50% -120px,var(--accent-soft),transparent 70%)}
+  .venue{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--accent);
+         background:var(--accent-soft);padding:4px 12px;border-radius:999px;margin-bottom:22px}
+  h1{font-size:clamp(26px,4.2vw,38px);line-height:1.35;font-weight:800;letter-spacing:-.02em}
+  .en-title{margin-top:14px;color:var(--muted);font-size:15.5px;line-height:1.55}
+  .authors{margin-top:26px;font-size:16px}
+  .authors b{font-weight:700}
+  .affil{color:var(--muted);font-size:14.5px;margin-top:4px}
+  .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:10px;font-weight:600;font-size:15px;
+       background:var(--ink);color:#fff}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .btn:hover{text-decoration:none;opacity:.88}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:44px 0 8px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px}
+  .stat .num{font-size:28px;font-weight:800;letter-spacing:-.02em;color:var(--accent);line-height:1.2}
+  .stat .lbl{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.45}
+
+  /* sections */
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:none}
+  h2{font-size:24px;font-weight:800;letter-spacing:-.01em;margin-bottom:18px}
+  h2 .kicker{display:block;font-size:13px;font-weight:700;color:var(--warm);letter-spacing:.06em;margin-bottom:6px}
+  p+p{margin-top:14px}
+  .tldr{font-size:19px;line-height:1.7;font-weight:500;background:var(--card);border-left:4px solid var(--accent);
+        padding:20px 24px;border-radius:0 12px 12px 0;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  ul.points{margin:16px 0 0 0;list-style:none}
+  ul.points li{position:relative;padding-left:22px;margin-top:10px}
+  ul.points li::before{content:"";position:absolute;left:4px;top:.72em;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+
+  figure{margin:28px 0 0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+  figure img{display:block;width:100%;height:auto;border-radius:6px}
+  figcaption{font-size:14px;color:var(--muted);margin-top:12px;line-height:1.6}
+  figcaption b{color:var(--ink)}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+  .duo figure{margin:0}
+  .narrow img{max-width:460px;margin:0 auto}
+
+  .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+  .flow div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+  .flow h3{font-size:15.5px;font-weight:700;margin-bottom:6px}
+  .flow p{font-size:14.5px;color:var(--muted);line-height:1.6}
+
+  table{width:100%;border-collapse:collapse;margin-top:24px;font-size:14.5px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th,td{padding:11px 12px;text-align:center;border-bottom:1px solid var(--line)}
+  th{background:#f3f4f7;font-weight:700;font-size:13.5px}
+  td:first-child,th:first-child{text-align:left}
+  tr.me td{background:var(--accent-soft);font-weight:700}
+  .tbl-wrap{overflow-x:auto}
+  .note{font-size:13.5px;color:var(--muted);margin-top:10px}
+
+  .limits{background:#fff8f5;border:1px solid #f6d9cd;border-radius:14px;padding:20px 24px;margin-top:22px}
+  .limits h3{font-size:16px;margin-bottom:6px;color:#b23d17}
+
+  pre.cite{background:#f3f4f7;border:1px solid var(--line);border-radius:10px;padding:16px;font-size:13px;
+           white-space:pre-wrap;word-break:break-all;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;line-height:1.6}
+  footer{padding:36px 0 56px;color:var(--muted);font-size:13px;line-height:1.7}
+
+  @media (max-width:720px){
+    body{font-size:16px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .duo,.flow{grid-template-columns:1fr}
+    header.hero{padding:64px 0 44px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="venue">IEEE Transactions on Instrumentation and Measurement · 2026</span>
+    <h1>선형·로그 증폭기를 결합한<br>넓은 동적 범위의 펄스 ToF 라이다 수신 회로</h1>
+    <p class="en-title">Readout Electronics of a Pulsed Time-of-Flight LiDAR Combining Linear and Logarithmic Amplifiers for a Wide Dynamic Range</p>
+    <p class="authors"><b>Chanhui Moon</b> (제1저자), Jeong Rok Gim, Hansang Lim (교신저자)</p>
+    <p class="affil">광운대학교 전자융합공학과 · LIG Nex1</p>
+    <div class="btns">
+      <a class="btn" href="https://doi.org/10.1109/TIM.2026.3712932" target="_blank" rel="noopener">논문 보기 (IEEE Xplore)</a>
+      <a class="btn ghost" href="#cite">인용 정보</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="num">82 dB</div><div class="lbl">검증한 입력 동적 범위<br>(약 1 : 12,500)</div></div>
+      <div class="stat"><div class="num">46 ps</div><div class="lbl">보정 후 타임워크<br>(거리 오차 1 cm 미만)</div></div>
+      <div class="stat"><div class="num">3.10 → 0.046 ns</div><div class="lbl">로그 증폭기 구간<br>보정 전 → 후 타임워크</div></div>
+      <div class="stat"><div class="num">223 MHz</div><div class="lbl">선형 증폭기 대역폭</div></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="summary">
+    <h2><span class="kicker">TL;DR</span>한 줄 요약</h2>
+    <p class="tldr">작은 신호는 크게, 큰 신호는 작게 키우는 <b>로그 증폭기</b>와 아주 큰 신호를 맡는 <b>저이득 선형 증폭기</b>를 나란히 붙여, 라이다 수신 신호를 82 dB 범위에서 포화 없이 처리하고 <b>펄스 폭 하나만으로</b> 타임워크를 46 ps까지 보정했습니다.</p>
+  </section>
+
+  <section id="abstract">
+    <h2><span class="kicker">ABSTRACT</span>초록</h2>
+    <p>자율주행 차량이 주변 물체를 정밀하게 감지하려면, 세기가 크게 다른 수신 신호의 도달 시간을 정확히 측정해야 합니다. 이를 위해 선형 증폭기와 로그 증폭기를 결합한 펄스 ToF(Time-of-Flight) 라이다 수신 회로를 제안합니다.</p>
+    <p>타이밍 판별기는 입력 범위가 좁습니다. 그래서 큰 신호는 포화되지 않도록 낮은 이득이, 작은 신호는 검출되도록 높은 이득이 필요합니다. 로그 증폭기는 작은 입력에 높은 이득, 큰 입력에 낮은 이득을 자연스럽게 제공해 넓은 입력 범위를 좁은 출력 범위로 압축합니다. 여기에 저이득 선형 증폭기를 더해, 상용 로그 증폭기를 포화시킬 만큼 큰 신호까지 처리하도록 동적 범위를 넓혔습니다.</p>
+    <p>그 결과 넓은 입력 범위에서 과도한 포화가 발생하지 않고, <b>하나의 시간 영역 특징(펄스 폭)</b>만으로 안정적인 타임워크 보정이 가능합니다. 대신 회로 복잡도는 늘어납니다. 개별 소자로 제작한 시제품을 82 dB 동적 범위에서 실험 검증했고, 측정한 펄스 폭으로 보정한 뒤 타임워크는 46 ps였습니다.</p>
+  </section>
+
+  <section id="problem">
+    <h2><span class="kicker">PROBLEM</span>왜 어려운가</h2>
+    <p>펄스 ToF 라이다는 레이저 펄스를 쏘고 반사되어 돌아오기까지의 시간으로 거리를 계산합니다. 수신 신호가 정해진 문턱 전압을 넘는 순간을 도달 시간으로 잡는데, 신호가 클수록 문턱을 일찍 넘습니다. 같은 거리라도 신호 세기에 따라 측정 시간이 달라지는 이 오차를 <b>타임워크(time walk)</b>라고 합니다.</p>
+    <ul class="points">
+      <li>거리 2~100 m, 반사율 0.25~1 조건에서 수신 신호 세기는 약 <b>80 dB</b>까지 차이가 납니다.</li>
+      <li>반면 일반 증폭기가 포화 없이 다룰 수 있는 범위는 약 <b>38~40 dB</b>입니다(최소 검출 50 mV, 최대 출력 4 V 가정).</li>
+      <li>범위를 넘는 신호는 증폭기를 과도하게 포화시키고, 출력 펄스가 실제보다 넓어져 보정이 불안정해집니다.</li>
+    </ul>
+  </section>
+
+  <section id="method">
+    <h2><span class="kicker">KEY IDEA</span>핵심 아이디어</h2>
+    <p>타임워크 보정에 필요한 것은 신호 세기에 대한 <b>선형성이 아니라 단조성</b>입니다. 세기가 커질수록 펄스 폭이 꾸준히 커지기만 하면 보정할 수 있습니다. 그래서 출력을 정확히 비례시키는 대신, 로그 함수로 넓은 입력을 좁은 출력에 압축하는 방식을 택했습니다.</p>
+
+    <figure class="narrow">
+      <img src="images/fig3-log-concept.png" alt="로그 함수의 입출력 관계: 1부터 10^4까지의 입력이 0부터 4의 출력으로 압축됨" loading="lazy">
+      <figcaption><b>그림 1.</b> 로그 함수의 입출력. 1~10⁴(80 dB) 범위의 입력이 0~4의 좁은 출력 범위로 압축됩니다. 왼쪽 그래프의 기울기(이득)는 입력이 작을수록 큽니다.</figcaption>
+    </figure>
+
+    <div class="flow">
+      <div><h3>① 차동 TIA</h3><p>APD에서 나온 전류를 저잡음으로 전압 변환합니다. 포화를 막기 위해 트랜스임피던스를 270 Ω으로 작게 잡았습니다.</p></div>
+      <div><h3>② 로그 증폭기</h3><p>약 200 mV 이하의 작은 신호를 담당합니다. 5단 리미팅 증폭기로 50 dB 범위를 처리합니다.</p></div>
+      <div><h3>③ 저이득 선형 증폭기</h3><p>200 mV~7 V의 큰 신호를 0.6배로 감쇠한 뒤 처리해 32 dB 범위를 추가로 확보합니다.</p></div>
+    </div>
+
+    <figure>
+      <img src="images/fig4-block-diagram.png" alt="제안한 수신 회로의 블록도: APD, TIA1, 로그 증폭기와 선형 증폭기의 병렬 구조, 타이밍 판별기 LED1~3, TDC" loading="lazy">
+      <figcaption><b>그림 2.</b> 제안한 수신 회로 블록도. TIA 출력을 로그 경로와 선형 경로로 나누고, 각 경로의 리딩 에지 판별기(LED)가 상승·하강 시점을 TDC로 보냅니다. TDC는 ToF와 펄스 폭을 함께 계산합니다.</figcaption>
+    </figure>
+  </section>
+
+  <section id="impl">
+    <h2><span class="kicker">IMPLEMENTATION</span>구현</h2>
+    <p>개념 검증용 시제품을 개별 소자로 제작했습니다. 메인 보드에는 APD, TIA, 타이밍 판별기를, 포스트앰프 보드에는 선형·로그 증폭기를 배치했습니다. 주요 부품은 TIA ADA4857, 선형 증폭기 AD8009, 로그 증폭기 AD641입니다. 실험은 905 nm 레이저(30 W)와 가변 ND 필터로 수신 세기를 바꿔 가며 진행했고, 시간 측정에는 단발 분해능 20 ps rms의 TDC를 사용했습니다.</p>
+    <figure class="narrow">
+      <img src="images/fig9-board.jpg" alt="제작한 메인 보드와 포스트앰프 보드 사진" loading="lazy">
+      <figcaption><b>그림 3.</b> 제작한 수신 회로. 메인 보드(아래) 위에 포스트앰프 보드(위)를 얹는 구조입니다.</figcaption>
+    </figure>
+  </section>
+
+  <section id="results">
+    <h2><span class="kicker">RESULTS</span>주요 결과</h2>
+    <p>82 dB 범위의 신호 중 작은 쪽 50 dB는 로그 증폭기가, 큰 쪽 32 dB는 선형 증폭기가 과도한 포화 없이 처리했습니다.</p>
+
+    <figure class="narrow">
+      <img src="images/fig10-waveforms.png" alt="TIA, 선형 증폭기, 로그 증폭기의 출력 파형" loading="lazy">
+      <figcaption><b>그림 4.</b> 입력 세기별 출력 파형. (a) TIA, (b) 선형 증폭기, (c) 로그 증폭기. 로그 증폭기는 0.8 µA~0.26 mA의 넓은 입력을 비슷한 크기의 출력으로 압축합니다.</figcaption>
+    </figure>
+
+    <h2 style="margin-top:44px;font-size:20px">타임워크 보정 전과 후</h2>
+    <p>보정 전에는 신호가 작아질수록 측정 시간이 늦어졌습니다. 선형 증폭기 구간(32 dB)에서 1.525 ns, 로그 증폭기 구간(50 dB)에서 3.10 ns의 타임워크가 있었습니다. 두 증폭기 모두 펄스 폭이 입력 세기에 따라 단조 증가했고, 이 펄스 폭으로 보정한 결과 전체 82 dB 범위의 타임워크가 <b>46 ps</b>로 줄었습니다. 거리로 환산하면 1 cm 미만의 오차입니다.</p>
+    <div class="duo">
+      <figure>
+        <img src="images/fig12-tof-before.png" alt="보정 전 입력 세기에 따른 ToF 측정값" loading="lazy">
+        <figcaption><b>그림 5.</b> 보정 전 ToF. (a) 선형 증폭기, (b) 로그 증폭기. 입력이 작을수록 ToF가 커집니다.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/fig14-tof-after.png" alt="펄스 폭으로 보정한 후의 ToF" loading="lazy">
+        <figcaption><b>그림 6.</b> 펄스 폭으로 보정한 ToF. 82 dB 전체 범위에서 약 20.66~20.71 ns 안에 들어옵니다.</figcaption>
+      </figure>
+    </div>
+
+    <h2 style="margin-top:44px;font-size:20px">선행 연구와 비교</h2>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>연구</th><th>구현</th><th>동적 범위</th><th>타임워크</th><th>타이밍 지터</th><th>보정 방식</th></tr></thead>
+      <tbody>
+        <tr class="me"><td>본 연구</td><td>개별 소자</td><td>82 dB</td><td>46 ps</td><td>146 ps</td><td>펄스 폭</td></tr>
+        <tr><td>[20] 2022</td><td>CMOS 65 nm</td><td>80 dB</td><td>~2 ns</td><td>116 ps</td><td>선형 근사</td></tr>
+        <tr><td>[26] 2020</td><td>CMOS 0.35 µm</td><td>94 dB</td><td>±100 ps</td><td>180 ps</td><td>불필요</td></tr>
+        <tr><td>[27] 2022</td><td>CMOS 0.18 µm</td><td>96 dB</td><td>±160 ps</td><td>560 ps</td><td>불필요</td></tr>
+        <tr><td>[30] 2021</td><td>CMOS 0.35 µm</td><td>91.1 dB</td><td>±75 ps</td><td>1.7 ns</td><td>펄스 폭 + 기울기</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">논문 Table II에서 발췌. 지터는 각 연구의 최악 조건 기준이며, 측정 조건이 연구마다 다르므로 직접 비교에는 주의가 필요합니다.</p>
+
+    <div class="limits">
+      <h3>한계와 향후 과제</h3>
+      <p>개별 소자로 구현해서 소비 전력이 IC 기반 연구보다 높습니다. 로그 증폭기 출력은 상승 시간이 길고 잡음이 커서, 가장 작은 신호(SNR 약 22)에서 지터가 146 ps까지 커집니다. 포화를 막으려고 트랜스임피던스를 작게 잡은 탓에 입력 환산 잡음(284 nA rms)도 큰 편입니다. 향후에는 지터를 줄이고 동적 범위를 더 넓히는 것을 목표로 합니다.</p>
+    </div>
+  </section>
+
+  <section id="cite">
+    <h2><span class="kicker">CITATION</span>인용</h2>
+<pre class="cite">@article{moon2026readout,
+  author  = {Moon, Chanhui and Gim, Jeong Rok and Lim, Hansang},
+  title   = {Readout Electronics of a Pulsed Time-of-Flight LiDAR Combining Linear and Logarithmic Amplifiers for a Wide Dynamic Range},
+  journal = {IEEE Transactions on Instrumentation and Measurement},
+  volume  = {75},
+  pages   = {2004211},
+  year    = {2026},
+  doi     = {10.1109/TIM.2026.3712932}
+}</pre>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    그림 출처: C. Moon, J. R. Gim, and H. Lim, “Readout Electronics of a Pulsed Time-of-Flight LiDAR Combining Linear and Logarithmic Amplifiers for a Wide Dynamic Range,” <i>IEEE Trans. Instrum. Meas.</i>, vol. 75, 2026, Art. no. 2004211. © 2026 IEEE.<br>
+    이 연구는 한국연구재단 기초연구사업(NRF-2021R1F1A1045896)과 광운대학교 2024년 연구비의 일부 지원을 받았습니다.
+  </div>
+</footer>
+
+</body>
+</html>
